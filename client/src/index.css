@@ -1,0 +1,26 @@
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body {
+  background: linear-gradient(270deg, #0a1e5e, #3b0a79, #6a0dad, #3b0a79, #0a1e5e);
+  background-size: 1000% 1000%;
+  animation: gradientMove 30s ease infinite;
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  color: #ccc;
+}
+
+* {
+  box-sizing: border-box;
+}
