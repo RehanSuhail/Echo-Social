@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import serverless from "serverless-http";
 
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
@@ -24,7 +25,7 @@ app.get("/", (req, res) => {
   res.send("✅ Backend is running on Vercel!");
 });
 
-// Connect to DB once (Vercel handles scaling)
+// MongoDB connection (only once)
 mongoose
   .connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
@@ -33,5 +34,5 @@ mongoose
   .then(() => console.log("✅ MongoDB connected"))
   .catch((error) => console.log(`${error} did not connect`));
 
-// ✅ Export app (no app.listen here!)
-export default app;
+// ⚡ Export wrapped handler for Vercel
+export const handler = serverless(app);

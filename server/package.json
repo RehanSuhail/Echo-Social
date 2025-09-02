@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "vercel-build": "echo 'No build step required'"
   },
   "dependencies": {
-    "express": "^4.19.2",
     "body-parser": "^1.20.2",
-    "mongoose": "^7.6.3",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "express": "^4.19.2",
+    "mongoose": "^7.6.3",
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
