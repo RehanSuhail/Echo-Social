@@ -22,7 +22,7 @@ app.use("/api/user", userRoutes);
 
 // Test route
 app.get("/", (req, res) => {
-  res.send("✅ Backend is running on Vercel!");
+  res.send("Backend is running on Vercel!");
 });
 
 // MongoDB connection
@@ -31,7 +31,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("✅ MongoDB connected"))
+  .then(() => console.log("MongoDB connected"))
   .catch((error) => console.log(`${error} did not connect`));
 
 // 👉 For Vercel: export app as default
