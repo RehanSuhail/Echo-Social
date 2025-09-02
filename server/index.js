@@ -23,7 +23,7 @@ app.use("/api/user", userRoutes);
 
 // Test route
 app.get("/", (req, res) => {
-  res.send("✅ Backend is running on Vercel!");
+  res.send("Backend is running on Vercel!");
 });
 
 // MongoDB connection
