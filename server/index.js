@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import serverless from "serverless-http";
 
 import postRoutes from "./routes/posts.js";
-import userRoutes from "./routes/users.js"; // ✅ placeholder for now
+import userRoutes from "./routes/users.js";
 
 dotenv.config();
 
@@ -32,7 +32,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("✅ MongoDB connected"))
+  .then(() => console.log("MongoDB connected"))
   .catch((error) => console.log(`${error} did not connect`));
 
 // Export for Vercel (Serverless)
