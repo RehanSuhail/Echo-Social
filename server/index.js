@@ -15,22 +15,23 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+// API Routes
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
 
-const PORT = process.env.PORT || 5000;
+// Test route
+app.get("/", (req, res) => {
+  res.send("✅ Backend is running on Vercel!");
+});
 
+// Connect to DB once (Vercel handles scaling)
 mongoose
   .connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() =>
-    app.listen(PORT, () =>
-      console.log(`✅ Server Running on Port: http://localhost:${PORT}`)
-    )
-  )
+  .then(() => console.log("✅ MongoDB connected"))
   .catch((error) => console.log(`${error} did not connect`));
 
-// ✅ Export app for Vercel
+// ✅ Export app (no app.listen here!)
 export default app;
