@@ -16,12 +16,12 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-// Routes
-app.use("/posts", postRoutes);
-app.use("/users", userRoutes);
+// ✅ API Routes with prefix
+app.use("/api/posts", postRoutes);
+app.use("/api/users", userRoutes);
 
-// Test route
-app.get("/", (req, res) => {
+// ✅ Test route
+app.get("/api", (req, res) => {
   res.send("✅ Backend is running!");
 });
 
@@ -36,8 +36,7 @@ mongoose
   .then(() => console.log("✅ MongoDB connected"))
   .catch((error) => console.error("❌ MongoDB connection error:", error));
 
-// 🚨 IMPORTANT: No app.listen() here!
-// Locally, we only start a server if not in production
+// 🚨 IMPORTANT: No app.listen() in production
 if (process.env.NODE_ENV !== "production") {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () =>
