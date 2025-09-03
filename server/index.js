@@ -36,12 +36,19 @@ mongoose
   .then(() => console.log("✅ MongoDB connected"))
   .catch((error) => console.error("❌ MongoDB connection error:", error));
 
-// 🚨 IMPORTANT: No app.listen() in production
-if (process.env.NODE_ENV !== "production") {
+/**
+ * 🚀 Start server:
+ * - Render sets process.env.PORT → must use it.
+ * - Vercel: we *don't* call listen, we just export app.
+ */
+if (process.env.RENDER) {
+  // Render deployment
   const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () =>
-    console.log(`🚀 Server running locally on port ${PORT}`)
-  );
+  app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+} else if (process.env.NODE_ENV !== "production") {
+  // Local development
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`🚀 Local server on port ${PORT}`));
 }
 
 // For Vercel
